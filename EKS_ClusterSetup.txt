@@ -1,0 +1,68 @@
+************EKS CLUSTER SET UP***********
+
+Managed Control Plane: 
+EKS takes care of managing the Kubernetes control plane components, such as the API server, controller manager, and etcd. AWS handles upgrades, patches, and ensures high availability of the control plane.
+
+Automated Updates: 
+EKS automatically updates the Kubernetes version, eliminating the need for manual intervention and ensuring that the cluster stays up-to-date with the latest features and security patches.
+
+
+Scalability:
+EKS can automatically scale the Kubernetes control plane based on demand, ensuring the cluster remains responsive as the workload increases.
+
+
+AWS Integration: 
+EKS seamlessly integrates with various AWS services, such as AWS IAM for authentication and authorization, Amazon VPC for networking, and AWS Load Balancers for service exposure.
+
+Security and Compliance: 
+EKS is designed to meet various security standards and compliance requirements, providing a secure and compliant environment for running containerized workloads.
+
+
+Monitoring and Logging: 
+EKS integrates with AWS CloudWatch for monitoring cluster health and performance metrics, making it easier to track and troubleshoot issues.
+
+
+Ecosystem and Community: 
+Being a managed service, EKS benefits from continuous improvement, support, and contributions from the broader Kubernetes community.
+
+
+Managed Data Plane (Node Groups):
+
+Description:
+The data plane consists of worker nodes (EC2 instances) where your containerized applications (pods) are deployed and run.These nodes form the backbone of your Kubernetes cluster and execute the workloads orchestrated by the control plane.
+
+Node Groups:
+EKS allows you to create node groups using eksctl, each associated with an Auto Scaling Group (ASG) that manages the underlying EC2 instances.Nodes are grouped based on instance type, capacity requirements, and scaling policies defined during cluster creation.
+
+Scaling:
+Node groups automatically scale based on workload demands using Amazon EC2 Auto Scaling.Policies define how nodes scale in and out based on metrics like CPU utilization, memory usage, or custom metrics.
+
+Managed Updates:
+EKS manages updates to the Kubernetes versions running on nodes, ensuring compatibility and minimizing downtime.we can customize update schedules and rollback policies to control the update process.
+
+
+Networking:
+
+VPC Integration:
+EKS clusters are integrated with Amazon Virtual Private Cloud (VPC), providing isolated networking for your Kubernetes pods and nodes.Each EKS cluster operates within its own VPC, which can span multiple Availability Zones for high availability.
+
+Subnets and Routing:
+EKS uses subnets within your VPC to deploy nodes and allocate IP addresses for pods.Subnet configurations ensure proper network isolation and routing of traffic between nodes, pods, and external services.
+
+
+cmd : eksctl create cluster --name <cluster_name> --region <region_name> 
+
+
+Configuring kubectl for EKS:
+(optional: because automatically kubectl point out to eks cluster when cluster is created)
+
+Once kubectl is installed, you need to configure it to work with your EKS cluster.
+In the AWS Management Console, go to the EKS service and select your cluster.
+Click on the "Config" button and follow the instructions to update your kubeconfig file.
+
+Alternatively, you can use the AWS CLI to update the kubeconfig file:
+
+aws eks update-kubeconfig --name <cluster_name> --region <region_name>
+
+
+
