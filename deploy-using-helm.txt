@@ -1,0 +1,15 @@
+***********deploy services using helm***************
+
+1)create a name space called robot-shop
+
+     cmd: kubectl create ns robot-shop
+
+
+2)deploy our services
+
+     cmd:  helm install robot-shop --namespace robot-shop .
+
+3)expose our services using ingress alb controller
+     * should be in folder where ingress.yaml is present
+
+     cmd: kubectl apply -f ingress.yaml
